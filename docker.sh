@@ -27,12 +27,12 @@ wget https://github.com/0xPolygon/polygon-edge/releases/download/v0.9.0/polygon-
 
 # Run and get NodeId of Node
 for i in "${ARRAY_NUMBER_NODES[@]}"; do
-  ./polygon-edge secrets init --data-dir $PREFIX_NAME_CHAIN-$i --insecure > $PREFIX_NAME_CHAIN-$i.txt
+  ./polygon-edge secrets init --data-dir ${NAME_NODES[$((i)) - 1]} --insecure > ${NAME_NODES[$((i)) - 1]}.txt
 done
 
 # Stop container if it already exists
 for i in "${ARRAY_NUMBER_NODES[@]}"; do
-  docker stop $PREFIX_NAME_CHAIN-$i
+  docker stop ${NAME_NODES[$((i)) - 1]}
 done
 
 # clear network if it already exists
@@ -53,10 +53,15 @@ rm -rf genesis.json
 
 # Build images
 for i in "${ARRAY_NUMBER_NODES[@]}"; do
-  docker build --build-arg CHAIN=$PREFIX_NAME_CHAIN-$i -t $PREFIX_NAME_CHAIN-$i . --no-cache
+  docker build --build-arg CHAIN=${NAME_NODES[$((i)) - 1]} -t ${NAME_NODES[$((i)) - 1]} . --no-cache
 done
 
 # Run images
 for i in "${ARRAY_NUMBER_NODES[@]}"; do
   docker run -d --name ${NAME_NODES[$((i)) - 1]} -p 0.0.0.0:1100$i:8545 --network $DOCKER_NETWORK --ip ${IP_NODES[$((i)) - 1]} ${NAME_NODES[$((i)) - 1]}
 done
+
+# Delete file NodeId
+# for i in "${ARRAY_NUMBER_NODES[@]}"; do
+#   rm ${NAME_NODES[$((i)) - 1]}.txt
+# done
