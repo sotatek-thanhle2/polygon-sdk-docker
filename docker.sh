@@ -19,7 +19,7 @@ docker build --build-arg CHAIN=test-chain-2 -t test-chain-2 . --no-cache
 docker build --build-arg CHAIN=test-chain-3 -t test-chain-3 . --no-cache
 docker build --build-arg CHAIN=test-chain-4 -t test-chain-4 . --no-cache
 
-docker run -d --name test-chain-1 -p 0.0.0.0:9001:8545 -p 0.0.0.0:8001:1478 -p 0.0.0.0:7001:9632 --network polygon-sdk-test test-chain-1
-docker run -d --name test-chain-2 -p 0.0.0.0:9002:8545 -p 0.0.0.0:8002:1478 -p 0.0.0.0:7002:9632 --network polygon-sdk-test test-chain-2
-docker run -d --name test-chain-3 -p 0.0.0.0:9003:8545 -p 0.0.0.0:8003:1478 -p 0.0.0.0:7003:9632 --network polygon-sdk-test test-chain-3
-docker run -d --name test-chain-4 -p 0.0.0.0:9004:8545 -p 0.0.0.0:8004:1478 -p 0.0.0.0:7004:9632 --network polygon-sdk-test test-chain-4
+docker run -d --name test-chain-1 -p 0.0.0.0:9001:8545 -p 0.0.0.0:9101:1478 -p 0.0.0.0:9201:9632 --network polygon-sdk-test test-chain-1
+docker run -d --name test-chain-2 -p 0.0.0.0:9002:8545 -p 0.0.0.0:9102:1478 -p 0.0.0.0:9202:9632 --network polygon-sdk-test test-chain-2
+docker run -d --name test-chain-3 -p 0.0.0.0:9003:8545 -p 0.0.0.0:9103:1478 -p 0.0.0.0:9203:9632 --network polygon-sdk-test test-chain-3
+docker run -d --name test-chain-4 -p 0.0.0.0:9004:8545 -p 0.0.0.0:9104:1478 -p 0.0.0.0:9204:9632 --network polygon-sdk-test test-chain-4
