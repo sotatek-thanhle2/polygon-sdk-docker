@@ -10,6 +10,7 @@ docker network create polygon-sdk-test
     --ibft-validators-prefix-path test-chain- \
     --chain-id 1213 \
     --bootnode /dns4/test-chain-1/tcp/1478/p2p/$(cat test-chain-1.txt | awk -F "=" {'print $2'} | tail -2 | awk '{gsub(" ", "", $0); print}') \
+    --bootnode /dns4/test-chain-2/tcp/1478/p2p/$(cat test-chain-2.txt | awk -F "=" {'print $2'} | tail -2 | awk '{gsub(" ", "", $0); print}') \
     --premine 0x2e355567c6C7127219C75868CCe4C5AD9A2F57f1:100000000000000000000000000
 
 
