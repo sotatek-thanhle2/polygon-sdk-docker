@@ -1,0 +1,19 @@
+FROM ubuntu:20.04
+
+ARG CHAIN
+RUN echo $CHAIN
+
+WORKDIR /polygon-sdk
+
+COPY genesis.json ./
+COPY polygon-edge ./
+COPY $CHAIN.txt ./validator.txt
+COPY $CHAIN/ ./validator/
+
+# RUN ls -a /home/pologon-sdk
+# RUN cat /polygon-sdk/validator.txt
+# RUN ls -a /polygon-sdk/validator
+
+EXPOSE 8545 1478 9632
+
+CMD ["/polygon-sdk/polygon-edge" ,"server" ,"--data-dir" ,"./validator" ,"--chain" , "genesis.json", "--grpc-address", "0.0.0.0:9632", "--libp2p", "0.0.0.0:1478", "--jsonrpc", "0.0.0.0:8545", "--seal"]
